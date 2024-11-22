@@ -1,358 +1,16 @@
 
-
-// // // import React, { useState, useEffect } from "react";
-// // // import axiosInstance from "../axiosInstance"; // Ensure axiosInstance is correctly set up
-
-// // // const AllEmployees = () => {
-// // //   const [employees, setEmployees] = useState([]);
-
-// // //   useEffect(() => {
-// // //     const fetchEmployees = async () => {
-// // //       try {
-// // //         const res = await axiosInstance.get("/employees", {
-// // //           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-// // //         });
-// // //         setEmployees(res.data);
-// // //       } catch (err) {
-// // //         console.error("Error fetching employees", err);
-// // //       }
-// // //     };
-
-// // //     fetchEmployees();
-// // //   }, []);
-
-// // //   return (
-// // //     <table border="1" style={{ width: "100%", textAlign: "left" }}>
-// // //       <thead>
-// // //         <tr>
-// // //           <th>Id</th>
-// // //           <th>Full Name</th>
-// // //           <th>Email</th>
-// // //           <th>Designation</th>
-// // //           <th>Salary</th>
-// // //           <th>Actions</th>
-// // //         </tr>
-// // //       </thead>
-// // //       <tbody>
-// // //         {employees.map((emp) => (
-// // //           <tr key={emp.id}>
-// // //             <td>{emp.id}</td>
-// // //             <td>{emp.name}</td>
-// // //             <td>{emp.email}</td>
-// // //             <td>{emp.position}</td>
-// // //             <td>{emp.salary}</td>
-// // //             <td>
-// // //               <button style={{ marginRight: "10px", background: "blue", color: "white" }}>
-// // //                 Edit
-// // //               </button>
-// // //               <button style={{ background: "red", color: "white" }}>Delete</button>
-// // //             </td>
-// // //           </tr>
-// // //         ))}
-// // //       </tbody>
-// // //     </table>
-// // //   );
-// // // };
-
-// // // export default AllEmployees;
-
-// // import React, { useState, useEffect } from "react";
-// // import axiosInstance from "../axiosInstance";
-
-// // const AllEmployees = () => {
-// //   const [employees, setEmployees] = useState([]);
-
-// //   useEffect(() => {
-// //     const fetchEmployees = async () => {
-// //       try {
-// //         const res = await axiosInstance.get("/employees", {
-// //           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-// //         });
-// //         setEmployees(res.data);
-// //       } catch (err) {
-// //         console.error("Error fetching employees", err);
-// //       }
-// //     };
-
-// //     fetchEmployees();
-// //   },[]);
-
-// //   return (
-// //     <table border="1" style={{ width: "100%", textAlign: "left" }}>
-// //       <thead>
-// //         <tr>
-// //           <th>Id</th>
-// //           <th>Full Name</th>
-// //           <th>Email</th>
-// //           <th>Designation</th>
-// //           <th>Salary</th>
-// //           <th>Actions</th>
-// //         </tr>
-// //       </thead>
-// //       <tbody>
-// //         {employees.map((emp) => (
-// //           <tr key={emp.id}>
-// //             <td>{emp.id}</td>
-// //             <td>{emp.name}</td>
-// //             <td>{emp.email}</td>
-// //             <td>{emp.position}</td>
-// //             <td>{emp.salary}</td>
-// //             <td>
-// //               <button style={{ marginRight: "10px", background: "blue", color: "white" }}>
-// //                 Edit
-// //               </button>
-// //               <button style={{ background: "red", color: "white" }}>Delete</button>
-// //             </td>
-// //           </tr>
-// //         ))}
-// //       </tbody>
-// //     </table>
-// //   );
-// // };
-
-// // export default AllEmployees;
-// import React, { useState, useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
-// import axiosInstance from "../axiosInstance";
-
-// const AllEmployees = ({ refresh }) => {
-//   const [employees, setEmployees] = useState([]);
-//   const navigate = useNavigate();
-
-//   // Fetch employees on component mount
-//   useEffect(() => {
-//     const fetchEmployees = async () => {
-//       try {
-//         const res = await axiosInstance.get("/employees", {
-//           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-//         });
-//         setEmployees(res.data);
-//       } catch (err) {
-//         console.error("Error fetching employees", err);
-//       }
-//     };
-
-//     fetchEmployees();
-//   }, [refresh]);
-
-//   // Handle delete employee
-//   const handleDelete = async (id) => {
-//     if (window.confirm("Are you sure you want to delete this employee?")) {
-//       try {
-//         await axiosInstance.delete(`/employees/${id}`, {
-//           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-//         });
-//         // Remove the deleted employee from the state
-//         setEmployees(employees.filter((emp) => emp.id !== id));
-//         alert("Employee deleted successfully.");
-//       } catch (err) {
-//         console.error("Error deleting employee", err);
-//         alert("Failed to delete employee.");
-//       }
-//     }
-//   };
-
-//   // Handle edit employee
-//   const handleEdit = (id) => {
-//     // Redirect to the edit form with the employee ID
-//     navigate(`/edit-employee/${id}`);
-//   };
-
-//   return (
-//     <table border="1" style={{ width: "100%", textAlign: "left" }}>
-//       <thead>
-//         <tr>
-//           <th>Id</th>
-//           <th>Name</th>
-//           <th>Email</th>
-//           <th>Position</th>
-//           <th>Department</th>
-//           <th>Salary</th>
-//           <th>Actions</th>
-//         </tr>
-//       </thead>
-//       <tbody>
-//         {employees.map((emp) => (
-//           <tr key={emp.id}>
-//             <td>{emp.id}</td>
-//             <td>{emp.name}</td>
-//             <td>{emp.email}</td>
-//             <td>{emp.position}</td>
-//             <td>{emp.department}</td>
-//             <td>{emp.salary}</td>
-//             <td>
-//               <button
-//                 onClick={() => handleEdit(emp.id)}
-//                 style={{ marginRight: "10px", background: "blue", color: "white" }}
-//               >
-//                 Edit
-//               </button>
-//               <button
-//                 onClick={() => handleDelete(emp.id)}
-//                 style={{ background: "red", color: "white" }}
-//               >
-//                 Delete
-//               </button>
-//             </td>
-//           </tr>
-//         ))}
-//       </tbody>
-//     </table>
-//   );
-// };
-
-// export default AllEmployees;
-
-// import React, { useState, useEffect } from "react";
-// import axiosInstance from "../axiosInstance";
-
-// const AllEmployees = ({ refresh }) => {
-//   const [employees, setEmployees] = useState([]);
-//   const [editingEmployee, setEditingEmployee] = useState(null);
-//   useEffect(() => {
-//     const fetchEmployees = async () => {
-//       try {
-//         const response = await axiosInstance.get("/employees");
-//         setEmployees(response.data);
-//       } catch (err) {
-//         console.error("Error fetching employees:", err);
-//       }
-//     };
-
-//     fetchEmployees();
-//   }, [refresh]);
-//   const handleDelete = async (id) => {
-//     if (window.confirm("Are you sure you want to delete this employee?")) {
-//       try {
-//         await axiosInstance.delete(`/employees/${id}`);
-//         setEmployees(employees.filter((emp) => emp.id !== id)); // Remove from state
-//         alert("Employee deleted successfully.");
-//       } catch (err) {
-//         console.error("Error deleting employee:", err);
-//         alert("Failed to delete employee.");
-//       }
-//     }
-//   };
-
-//   // Handle edit employee
-//   const handleEditSubmit = async (e) => {
-//     e.preventDefault();
-
-//     try {
-//       await axiosInstance.put(`/employees/${editingEmployee.id}`, editingEmployee);
-//       alert("Employee updated successfully.");
-//       setEditingEmployee(null); // Reset edit state
-//     } catch (err) {
-//       console.error("Error updating employee:", err);
-//       alert("Failed to update employee.");
-//     }
-//   };
-//   return (
-//     <table border="1" style={{ width: "100%", textAlign: "left" }}>
-//       <thead>
-//         <tr>
-//           <th>ID</th>
-//           <th>Name</th>
-//           <th>Email</th>
-//           <th>Position</th>
-//           <th>Department</th>
-//           <th>Salary</th>
-//           <th>Actions</th>
-//         </tr>
-//       </thead>
-//       <tbody>
-//         {employees.map((emp) => 
-//         editingEmployee && editingEmployee.id === emp.id ? (
-//           <tr key={emp.id}>
-//             <td>{emp.id}</td>
-//             <td>
-//               <input
-//                 type="text"
-//                 value={editingEmployee.name}
-//                 onChange={(e) =>
-//                   setEditingEmployee({ ...editingEmployee, name: e.target.value })
-//                 }
-//               />
-//             </td>
-//             <td>
-//               <input
-//                 type="email"
-//                 value={editingEmployee.email}
-//                 onChange={(e) =>
-//                   setEditingEmployee({ ...editingEmployee, email: e.target.value })
-//                 }
-//               />
-//             </td>
-//             <td>
-//               <input
-//                 type="text"
-//                 value={editingEmployee.position}
-//                 onChange={(e) =>
-//                   setEditingEmployee({ ...editingEmployee, position: e.target.value })
-//                 }
-//               />
-//             </td>
-//             <td>
-//               <input
-//                 type="text"
-//                 value={editingEmployee.department}
-//                 onChange={(e) =>
-//                   setEditingEmployee({ ...editingEmployee, department: e.target.value })
-//                 }
-//               />
-//             </td>
-//             <td>
-//               <input
-//                 type="number"
-//                 value={editingEmployee.salary}
-//                 onChange={(e) =>
-//                   setEditingEmployee({ ...editingEmployee, salary: e.target.value })
-//                 }
-//               />
-//             </td>
-//             <td>
-//               <button onClick={handleEditSubmit}>Save</button>
-//               <button onClick={() => setEditingEmployee(null)}>Cancel</button>
-//             </td>
-//           </tr>
-//         ) : (
-//           <tr key={emp.id}>
-//             <td>{emp.id}</td>
-//             <td>{emp.name}</td>
-//             <td>{emp.email}</td>
-//             <td>{emp.position}</td>
-//             <td>{emp.department}</td>
-//             <td>{emp.salary}</td>
-//             <td>
-//                   <button
-//                     onClick={() => setEditingEmployee(emp)}
-//                     style={{ marginRight: "10px", background: "blue", color: "white" }}
-//                   >
-//                     Edit
-//                   </button>
-//                   <button
-//                     onClick={() => handleDelete(emp.id)}
-//                     style={{ background: "red", color: "white" }}
-//                   >
-//                     Delete
-//                   </button>
-//                 </td>
-//           </tr>
-//         ))}
-//       </tbody>
-//     </table>
-//   );
-// };
-
-// export default AllEmployees;
-
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axiosInstance from "../axiosInstance";
 
 const AllEmployees = ({ refresh }) => {
   const [employees, setEmployees] = useState([]);
-  const [editingEmployee, setEditingEmployee] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filter, setFilter] = useState("all");
+  const [attendance, setAttendance] = useState({});
+  const navigate = useNavigate();
 
+  // Fetch all employees on component mount or refresh
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
@@ -366,128 +24,137 @@ const AllEmployees = ({ refresh }) => {
     fetchEmployees();
   }, [refresh]);
 
-  // Handle delete employee
+  // Delete an employee
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this employee?")) {
       try {
-        await axiosInstance.delete(`/employees/${id}`);
-        setEmployees(employees.filter((emp) => emp.id !== id)); // Remove from state
+        await axiosInstance.delete(`/employees/${id}`, {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        });
+        setEmployees(employees.filter((emp) => emp.id !== id));
         alert("Employee deleted successfully.");
       } catch (err) {
-        console.error("Error deleting employee:", err);
+        console.error("Error deleting employee", err);
         alert("Failed to delete employee.");
       }
     }
   };
 
-  // Handle edit employee
-  const handleEditSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      await axiosInstance.put(`/employees/${editingEmployee.id}`, editingEmployee);
-      alert("Employee updated successfully.");
-      setEditingEmployee(null); // Reset edit state
-    } catch (err) {
-      console.error("Error updating employee:", err);
-      alert("Failed to update employee.");
-    }
+  // Edit an employee
+  const handleEdit = (id) => {
+    navigate(`/edit-employee/${id}`);
   };
+
+  // Handle attendance tracking
+  const handleAttendance = (id) => {
+    setAttendance((prev) => ({
+      ...prev,
+      [id]: !prev[id], // Toggle attendance
+    }));
+  };
+
+  // Filter employees based on search term and filter option
+  const filteredEmployees = employees.filter((emp) => {
+    const matchesSearch = emp.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesFilter =
+      filter === "all" || emp.position === filter || emp.department === filter;
+
+    return matchesSearch && matchesFilter;
+  });
 
   return (
     <div>
-      <table border="1" style={{ width: "100%", textAlign: "left" }}>
+      {/* <h1>All Employees</h1> */}
+
+      {/* Search Field */}
+      <input
+        type="text"
+        placeholder="Search by name..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        style={{
+          marginBottom: "10px",
+          padding: "5px",
+          width: "20%",
+          border: "1px solid gray",
+          borderRadius: "5px",
+        }}
+      />
+
+      {/* Filter Dropdown */}
+      <select
+        value={filter}
+        onChange={(e) => setFilter(e.target.value)}
+        style={{
+          marginLeft: "10px",
+          marginBottom: "10px",
+          padding: "5px",
+          border: "1px solid gray",
+          borderRadius: "5px",
+        }}
+      >
+        <option value="all">All</option>
+        <option value="Manager">Manager</option>
+        <option value="Developer">Developer</option>
+        <option value="HR">HR</option>
+        <option value="Sales">Sales</option>
+      </select>
+
+      {/* Employee Table */}
+      <table border="1" style={{ width: "100%", textAlign: "left", marginTop: "10px" }}>
         <thead>
           <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Email</th>
+            <th>DOB</th>
             <th>Position</th>
-            <th>Department</th>
-            <th>Salary</th>
+            <th>Joining Date</th>
+            <th>Address</th>
+            {/* <th>Skills</th> */}
+            <th>Attendance</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {employees.map((emp) =>
-            editingEmployee && editingEmployee.id === emp.id ? (
-              <tr key={emp.id}>
-                <td>{emp.id}</td>
-                <td>
-                  <input
-                    type="text"
-                    value={editingEmployee.name}
-                    onChange={(e) =>
-                      setEditingEmployee({ ...editingEmployee, name: e.target.value })
-                    }
-                  />
-                </td>
-                <td>
-                  <input
-                    type="email"
-                    value={editingEmployee.email}
-                    onChange={(e) =>
-                      setEditingEmployee({ ...editingEmployee, email: e.target.value })
-                    }
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value={editingEmployee.position}
-                    onChange={(e) =>
-                      setEditingEmployee({ ...editingEmployee, position: e.target.value })
-                    }
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value={editingEmployee.department}
-                    onChange={(e) =>
-                      setEditingEmployee({ ...editingEmployee, department: e.target.value })
-                    }
-                  />
-                </td>
-                <td>
-                  <input
-                    type="number"
-                    value={editingEmployee.salary}
-                    onChange={(e) =>
-                      setEditingEmployee({ ...editingEmployee, salary: e.target.value })
-                    }
-                  />
-                </td>
-                <td>
-                  <button onClick={handleEditSubmit}>Save</button>
-                  <button onClick={() => setEditingEmployee(null)}>Cancel</button>
-                </td>
-              </tr>
-            ) : (
-              <tr key={emp.id}>
-                <td>{emp.id}</td>
-                <td>{emp.name}</td>
-                <td>{emp.email}</td>
-                <td>{emp.position}</td>
-                <td>{emp.department}</td>
-                <td>{emp.salary}</td>
-                <td>
-                  <button
-                    onClick={() => setEditingEmployee(emp)}
-                    style={{ marginRight: "10px", background: "blue", color: "white" }}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDelete(emp.id)}
-                    style={{ background: "red", color: "white" }}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            )
-          )}
+          {filteredEmployees.map((emp) => (
+            <tr key={emp.id}>
+              <td>{emp.id}</td>
+              <td>{emp.name}</td>
+              <td>{emp.dob}</td>
+              <td>{emp.position}</td>
+              <td>{emp.join}</td>
+              <td>{emp.address}</td>
+              {/* <td>{emp.skill}</td> */}
+              <td>
+                <button
+                  onClick={() => handleAttendance(emp.id)}
+                  style={{
+                    background: attendance[emp.id] ? "green" : "gray",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "5px",
+                    padding: "5px",
+                  }}
+                >
+                  {attendance[emp.id] ? "Present" : "Absent"}
+                </button>
+              </td>
+              <td>
+                <button
+                  onClick={() => handleEdit(emp.id)}
+                  style={{ marginRight: "10px", background: "blue", color: "white" }}
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => handleDelete(emp.id)}
+                  style={{ background: "red", color: "white" }}
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

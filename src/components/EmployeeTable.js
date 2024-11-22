@@ -1,72 +1,4 @@
-// import React, { useEffect, useState } from "react";
-// import API from "../services/api";
 
-// const EmployeeTable = () => {
-//   const [employees, setEmployees] = useState([]);
-
-//   const fetchEmployees = async () => {
-//     try {
-//       const { data } = await API.get("/employee");
-//       setEmployees(data);
-//     } catch (err) {
-//       alert("Failed to fetch employees: " + err.response.data.error);
-//     }
-//   };
-
-//   const handleDelete = async (id) => {
-//     if (window.confirm("Are you sure you want to delete this employee?")) {
-//       try {
-//         await API.delete(`/employee/${id}`);
-//         alert("Employee deleted successfully!");
-//         fetchEmployees(); // Refresh the list
-//       } catch (err) {
-//         alert("Failed to delete employee: " + err.response.data.error);
-//       }
-//     }
-//   };
-
-//   useEffect(() => {
-//     fetchEmployees();
-//   }, []);
-
-//   return (
-//     <div className="employee-table">
-//       <h2>Employee List</h2>
-//       {employees.length === 0 ? (
-//         <p>No employees found.</p>
-//       ) : (
-//         <table>
-//           <thead>
-//             <tr>
-//               <th>ID</th>
-//               <th>Name</th>
-//               <th>Role</th>
-//               <th>Address</th>
-//               <th>Skills</th>
-//               <th>Actions</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {employees.map((employee) => (
-//               <tr key={employee.employeeId}>
-//                 <td>{employee.employeeId}</td>
-//                 <td>{employee.employeeName}</td>
-//                 <td>{employee.role}</td>
-//                 <td>{employee.address}</td>
-//                 <td>{employee.skills.join(", ")}</td>
-//                 <td>
-//                   <button onClick={() => handleDelete(employee.employeeId)}>Delete</button>
-//                 </td>
-//               </tr>
-//             ))}
-//           </tbody>
-//         </table>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default EmployeeTable;
 
 
 import React, { useEffect, useState } from "react";
@@ -81,7 +13,7 @@ const EmployeeTable = () => {
     dateOfBirth: "",
     role: "",
     address: "",
-    skills: "",
+    // skills: "",
   });
 
   const fetchEmployees = async () => {
@@ -100,7 +32,7 @@ const EmployeeTable = () => {
       dateOfBirth: employee.dateOfBirth,
       role: employee.role,
       address: employee.address,
-      skills: employee.skills.join(", "),
+      // skills: employee.skills.join(", "),
     });
   };
  const handleDelete = async (id) => {
@@ -162,9 +94,11 @@ const EmployeeTable = () => {
             <tr>
               <th>ID</th>
               <th>Name</th>
-              <th>Role</th>
+              <th>DOB</th>
+              <th>Position</th>
+              <th>Joining date</th>
               <th>Address</th>
-              <th>Skills</th>
+              {/* <th>Skills</th> */}
               <th>Actions</th>
                 {/* <th>Name</th>
             <th>Date of Birth</th>
@@ -181,8 +115,9 @@ const EmployeeTable = () => {
                 <td>{employee.employeeName}</td>
                 <td>{employee.role}</td>
                 <td>{employee.address}</td>
+                {/* <td>{employee.skill}</td>
                 {/* <td>{employee.skills.join(", ")}</td> */}
-                <td>{Array.isArray(employee.skills) ? employee.skills.join(", ") : "No skills listed"}</td>
+                {/* <td>{Array.isArray(employee.skills) ? employee.skills.join(", ") : "No skills listed"}</td> */} */}
 
                 <td>
                   <button onClick={() => handleEdit(employee)}>Edit</button>
@@ -206,14 +141,14 @@ const EmployeeTable = () => {
           <h3>Edit Employee</h3>
           <input
             type="text"
-            name="employeeName"
+            name="Name"
             value={formData.employeeName}
             onChange={(e) => setFormData({ ...formData, employeeName: e.target.value })}
             required
           />
           <input
             type="date"
-            name="dateOfBirth"
+            name="dob"
             value={formData.dateOfBirth}
             onChange={(e) => setFormData({ ...formData, dateOfBirth: e.target.value })}
             required
@@ -231,13 +166,13 @@ const EmployeeTable = () => {
             onChange={(e) => setFormData({ ...formData, address: e.target.value })}
             required
           />
-          <input
+          {/* <input
             type="text"
             name="skills"
-            value={formData.skills}
+            value={formData.skill}
             onChange={(e) => setFormData({ ...formData, skills: e.target.value })}
             required
-          />
+          /> */}
           <button type="submit">Update</button>
           <button onClick={() => setEditingEmployee(null)}>Cancel</button>
         </form>

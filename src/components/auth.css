@@ -9,7 +9,7 @@
 
 /* Common card styles for the form containers */
 .auth-card {
-    background-color: #5774bd; /* Background color */
+    background-color: #b5c1e0; /* Background color */
     padding: 2rem; /* Padding inside the card */
     border-radius: 0.25rem; /* Rounded corners */
     box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1); /* Subtle shadow */

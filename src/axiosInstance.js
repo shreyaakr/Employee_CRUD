@@ -3,7 +3,9 @@ import axios from "axios";
 // Create an Axios instance
 const axiosInstance = axios.create({
   baseURL: "http://localhost:5000", // Your backend base URL
-  timeout: 5000, // Optional timeout
+  headers: {
+    "Content-Type": "application/json",
+  }, 
 });
 
 // Add a request interceptor to include the token
