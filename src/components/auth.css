@@ -1,0 +1,97 @@
+/* Common container styles for Signup and Login components */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: #f8f9fa; /* Light background color for the entire container */
+}
+
+/* Common card styles for the form containers */
+.auth-card {
+    background-color: #5774bd; /* Background color */
+    padding: 2rem; /* Padding inside the card */
+    border-radius: 0.25rem; /* Rounded corners */
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 400px; /* Fixed width for the card */
+}
+
+/* Common form element styles */
+.auth-card h2 {
+    font-size: 1.5rem; /* Font size for the headers */
+    margin-bottom: 1rem; /* Margin below the headers */
+    text-align: center; /* Center align the headers */
+}
+
+.auth-card form {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-card form .form-group {
+    margin-bottom: 1rem; /* Margin below each form group */
+}
+
+.auth-card form .form-group label {
+    margin-bottom: 0.5rem; /* Margin below the label */
+}
+
+.auth-card form .form-group input {
+    border-radius: 0; /* Remove rounded corners from form controls */
+    padding: 0.5rem; /* Padding inside the input */
+    width: 100%; /* Full width input */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Custom button styles */
+.auth-card .btn {
+    width: 100%; /* Full width buttons */
+    border-radius: 0.25rem; /* Slightly rounded corners for buttons */
+    padding: 0.75rem; /* Padding inside the button */
+    font-size: 1rem; /* Font size for the button text */
+    text-align: center; /* Center align the button text */
+    margin-bottom: 1rem; /* Margin below each button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.auth-card .btn-success {
+    background-color: #d4e0de; /* Green background color */
+    color: black; /* White text color */
+    border: none; /* Remove border */
+    width: auto; /* Set width to auto to prevent it from stretching */
+  margin: 0 auto; /* Center the button horizontally */
+  display: block; /* Use block display to make the button a block-level element */
+  text-align: center;
+}
+
+.auth-card .btn-success:hover {
+    background-color: #585c5c; /* Darker green on hover */
+}
+
+.auth-card .btn-primary {
+    background-color: #5a585f; /* Blue background color */
+    color: white; /* White text color */
+    border: none; /* Remove border */
+    margin-top: 10px;
+}
+
+.auth-card .btn-primary:hover {
+    background-color: #5a5c5e; /* Darker blue on hover */
+}
+
+/* Additional text styles for links and paragraphs */
+.auth-card p {
+    margin-top: 0.75px; /* Margin above the paragraphs */
+    text-align: center; /* Center align the paragraphs */
+    color:black;
+}
+
+.auth-card .btn-link {
+    display: block; /* Display links as block elements */
+    text-align: center; /* Center align the links */
+    margin-top: 0.75rem; /* Adjust the margin to place the link closer to the button */
+}
+.additional-margin {
+    margin-top: 1rem; /* Add additional margin above the "Already have an account?" section */
+}
